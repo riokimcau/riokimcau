@@ -9,22 +9,497 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play project-1.</tw-noscript></noscript></tw-story>
-<tw-storydata name="project-1" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="B4363DBD-19DA-4B7E-AC7F-95595AD9D7A6" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body, tw-story {
-color : #000000;
-background-color : #FFFFFF;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Start" tags="" position="100,50" size="100,100">(플레이하기 위한 전사 스토리를 설명할 것)
+<tw-storydata name="project-1" startnode="24" creator="Twine" creator-version="2.12.0" format="Harlowe" format-version="3.3.9" ifid="B4363DBD-19DA-4B7E-AC7F-95595AD9D7A6" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
+  background-color: #0b0c10; /* 어두운 배경 */
+  color: #c5c6c8; /* 차분한 텍스트 */
+  font-family: 'Courier New', Courier, monospace;
+}
 
-[[당신은 이야기가 궁금한가요?|A0]]</tw-passagedata><tw-passagedata pid="2" name="A0" tags="" position="300,50" size="100,100">(주인공과 세계관에 대한 정보가 설명되어야 한다, 선택은 두 가지 방향이 있다. 주인공이 능동적으로 무언가를 선택하기 위해 움직이는 것, 두번째는 수동적으로 세계를 관찰하는 것. 두 가지 레이어의 이야기가 진행되다가 어느 순간 교차되어 각 관점이 이해가 되도록 구성해본다.
+tw-link {
+  color: #66fcf1; /* 형광 파스텔톤 (비디오 느낌) */
+  font-weight: bold;
+  text-decoration: none;
+}
 
-혹은 인물이 두명일 수 있고, 각 인물은 하나의 대상을 욕망하며 획득하기 위해 능동적으로 움직이고, 다른 한 명은 그 대상에 대한 호기심으로 주변을 관찰하며 이야기가 진행되어도 좋다.)
+tw-link:hover {
+  color: #45a29e;
+  text-shadow: 0 0 10px #66fcf1;
+}
+
+/* --- 네온사인 효과 CSS --- */
+
+/* 네온 글자가 위치할 컨테이너 설정 */
+.neon-container {
+    text-align: center; /* 가운데 정렬 */
+    margin: 2em 0;      /* 위아래 간격 */
+    background-color: #000; /* 글자가 잘 보이도록 배경을 검은색으로 */
+    padding: 1em;
+    border-radius: 10px;
+}
+
+/* 네온 글자 기본 스타일 */
+.neon-text {
+    font-family: 'Courier New', Courier, monospace; /* 비디오 느낌의 글꼴 */
+    font-size: 2.5em; /* 글자 크기 키움 */
+    font-weight: bold;
+    text-transform: uppercase; /* 대문자로 변환 */
+    
+    /* 기본 색상 (약간 바랜 파란색) */
+    color: #08f; 
+    
+    /* 핵심: 네온 글로우 효과 (여러 겹의 그림자로 구현) */
+    text-shadow: 
+        0 0 5px #fff,    /* 가장 안쪽 흰색 광원 */
+        0 0 10px #fff,
+        0 0 20px #08f,   /* 중간 파란색 빛 */
+        0 0 30px #08f,
+        0 0 40px #08f,   /* 가장 바깥쪽 파란색 퍼짐 */
+        0 0 55px #08f,
+        0 0 75px #08f;
+
+    /* 깜빡이는 애니메이션 연결 */
+    animation: neon-flicker 2s infinite alternate;
+}
+
+/* --- 깜빡이는 애니메이션 정의 (키프레임) --- */
+@keyframes neon-flicker {
+    /* 0%~18%: 정상적으로 빛남 */
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 20px #08f,
+            0 0 30px #08f,
+            0 0 40px #08f,
+            0 0 55px #08f,
+            0 0 75px #08f;
+        color: #08f;
+    }
+    
+    /* 20%, 24%, 55%: 불이 꺼지거나 흐려지는 순간 (노후된 네온 느낌) */
+    20%, 24%, 55% {
+        text-shadow: none; /* 글로우 효과 제거 */
+        color: #024;       /* 아주 어두운 파란색으로 변경 */
+    }
+}
+
+/* 전체 배경: 깊은 심야의 대여점 분위기 */
+tw-story {
+    background-color: #0b0c10; /* 아주 깊은 남색 계열의 검정 */
+    background-image: radial-gradient(circle at center, #1f2833 0%, #0b0c10 100%);
+    color: #c5c6c7;
+    font-family: 'Pretendard', 'Courier New', Courier, monospace;
+    line-height: 1.8;
+}
+
+/* 텍스트 글로우: 모든 글자가 은은하게 빛남 */
+tw-passage {
+    text-shadow: 0 0 8px rgba(102, 252, 241, 0.3);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* 링크 스타일: 사이버펑크 네온 블루 */
+tw-link {
+    color: #66fcf1 !important;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+tw-link:hover {
+    color: #fff !important;
+    text-shadow: 0 0 15px #66fcf1, 0 0 30px #66fcf1;
+    border-bottom: 1px solid #66fcf1;
+    padding-left: 10px; /* 마우스 올리면 살짝 밀리는 연출 */
+}
+
+/* 비디오 노이즈 효과 (Scanline) */
+tw-story::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.1) 50%
+    ), linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.03), 
+        rgba(0, 255, 0, 0.01), 
+        rgba(0, 0, 255, 0.03)
+    );
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none; /* 클릭 방해 금지 */
+    z-index: 9999;
+}
+
+/* 화면 전환 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.clerk-speech {
+    background: rgba(31, 40, 51, 0.8);
+    border-left: 4px solid #45a29e;
+    padding: 15px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #fff;
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="대여점_입구" tags="" position="75,150" size="100,100">{ (set: $T to 0, $E to 0, $D to 0) }
+[SCENE #1. 경계의 비디오 대여점]
+
+문 위에서 &#39;딸랑&#39;하고 낡은 종소리가 울립니다. 
+문밖은 끝이 보이지 않는 푸른 안개뿐이지만, 대여점 안은 누렇게 바랜 종이 냄새와 브라운관 TV의 웅웅거리는 진동음으로 가득합니다.
+
+카운터 뒤에서 점원이 무표정하게 당신을 바라봅니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;어서오세요. 망각의 강을 건너기 전, 마지막으로 당신의 &#39;필름&#39;을 확인하러 오셨습니까?&quot;&lt;/div&gt;
 
 
-[[A1]]
 
-[[A2]]</tw-passagedata><tw-passagedata pid="3" name="A1" tags="" position="400,275" size="100,100">등장인물 1
-어떤 대상을 욕망하며 획득하기 위해 능동적으로 어떤 수단을 활용하여 움직이는 사람.
-욕망은 클 수록 좋고, 선택하려는 수단이 위험할 수록 흥미가 생길 것이다.</tw-passagedata><tw-passagedata pid="4" name="A2" tags="" position="600,275" size="100,100">대상에 대한 호기심을 가지고 관찰하기 위해 이동하는 인물 2
-인물이 움직이는 공간은 일상적이지 않고 비전형적인 세계다.</tw-passagedata></tw-storydata>
+[[점원에게 다가가 말을 건다.-&gt;점원과의_대화]]
+</tw-passagedata><tw-passagedata pid="2" name="점원과의_대화" tags="" position="525,75" size="100,100">점원이 낡은 철제 상자에서 먼지가 쌓인 VHS 테이프 하나를 꺼냅니다.
+라벨에는 당신의 이름이 흐릿하게 적혀 있습니다.
+
+
+&lt;div class=&quot;clerk-speech&quot;&gt; 점원: &quot;이 테이프는 당신의 전생입니다. 
+보시다시피 기억의 열화가 심해 화면이 다 타버렸어요. 직접 부품을 골라 수리해야 합니다. 당신이 고른 부품이 곧 이 영화의 &#39;장르&#39;가 될 겁니다. 준비되셨습니까?&quot; &lt;/div&gt;
+
+
+[[테이프를 받아 수리대로 이동한다.-&gt;분기_이미지]]
+</tw-passagedata><tw-passagedata pid="3" name="분기_이미지" tags="" position="925,50" size="100,100">수리대 위에는 세 종류의 렌즈가 놓여 있습니다. 어느 &#39;시선&#39;으로 당신의 삶을 복구하시겠습니까?
+
+(link: &quot;진실을 포착하는 리얼리즘 렌즈&quot;)[(set: $T to $T + 2)(goto: &quot;루트A_진실&quot;)]
+(link: &quot;환상을 그리는 프리즘 필터&quot;)[(set: $E to $E + 2)(goto: &quot;루트B_환상&quot;)]
+(link: &quot;화면을 찢어버리는 거친 노이즈 헤드&quot;)[(set: $D to $D + 2)(goto: &quot;루트C_충격&quot;)]
+
+{ (if: false)[ [[-&gt;루트A_진실]] [[-&gt;루트B_환상]] [[-&gt;루트C_충격]] ] }
+</tw-passagedata><tw-passagedata pid="4" name="루트A_진실" tags="" position="650,250" size="100,100">렌즈를 깨끗이 닦아내자, 지직거리던 화면이 차갑고 선명하게 고정됩니다. 
+스크린 속에는 비가 내린 뒤의 축축한 도시 골목이 보입니다. 화려한 기교는 없지만, 숨길 수 없는 삶의 민낯이 드러납니다. 
+
+당신은 이 건조한 풍경 속에서 무엇을 포착하겠습니까?
+
+(link: &quot;길가에 버려진 낡은 구두 한 짝&quot;)[(set: $T to $T + 1)(goto: &quot;A_기억_사물&quot;)]
+(link: &quot;누군가를 기다리며 홀로 담배를 피우는 남자&quot;)[(set: $T to $T + 1)(goto: &quot;A_기억_인물&quot;)]
+
+{ (if: false)[ [[-&gt;A_기억_사물]] [[-&gt;A_기억_인물]] ] }
+</tw-passagedata><tw-passagedata pid="5" name="루트B_환상" tags="" position="725,650" size="100,100">프리즘을 통과한 빛이 화면을 무지갯빛으로 적십니다. 현실의 거친 질감은 사라지고, 꿈속을 유영하는 듯한 부드러운 색채들이 스크린을 가득 채웁니다. 
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;아름다운 것에 마음을 뺏기셨군요. 하지만 조심하세요. 환상은 달콤할수록 빠져나오기 힘든 법이니까요.&quot;&lt;/div&gt;
+
+
+[[환상의 경계 안으로 발을 들인다.-&gt;B_경계_해체]]
+</tw-passagedata><tw-passagedata pid="6" name="루트C_충격" tags="" position="975,225" size="100,100">브라운관이 비명을 지르듯 지직거립니다. 화면은 형체를 알아볼 수 없을 정도로 파편화되어 쏟아집니다. 이 파괴적인 에너지 속에서 당신은 어떤 &#39;찰나&#39;를 붙잡겠습니까?
+
+(link: &quot;무너져 내리는 건물들의 기하학적인 파편&quot;)[(set: $D to $D + 1)(goto: &quot;C_기억_파괴&quot;)]
+(link: &quot;어둠을 가르며 질주하는 자동차의 잔상&quot;)[(set: $D to $D + 1)(goto: &quot;C_기억_속도&quot;)]
+
+{ (if: false)[ [[-&gt;C_기억_파괴]] [[-&gt;C_기억_속도]] ] }
+</tw-passagedata><tw-passagedata pid="7" name="C_기억_파괴" tags="" position="925,375" size="100,100">파편들이 눈앞에서 느리게 회전합니다. 파괴는 곧 새로운 형태의 시작이기도 하죠. 당신은 질서보다 혼돈 속에서 더 큰 생명력을 느꼈던 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;거칠군요. 하지만 이것 또한 당신이 세상을 이해하는 방식이었겠죠.&quot;&lt;/div&gt;
+
+
+[[테이프의 소리 채널을 연다.-&gt;유물_악보]]
+</tw-passagedata><tw-passagedata pid="8" name="C_기억_속도" tags="" position="1225,325" size="100,100">모든 것이 빠르게 스쳐 지나갑니다. 정지된 것은 죽은 것과 다름없습니다. 당신은 멈추지 않는 운동성 속에서 살아있음을 증명하던 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;빠르군요. 당신의 생은 단 한 순간도 지루할 틈이 없었겠습니다.&quot;&lt;/div&gt;
+
+
+[[테이프의 소리 채널을 연다.-&gt;유물_악보]]
+</tw-passagedata><tw-passagedata pid="9" name="유물_악보" tags="" position="1000,550" size="100,100">이미지는 어느 정도 복구되었습니다. 이제 이 영화를 채울 &#39;소리&#39;가 들려오기 시작합니다. 대여점 한구석의 스피커가 진동하며 당신의 주파수를 묻습니다.
+
+(link: &quot;현장의 소음과 거친 숨소리가 담긴 사실적인 채널&quot;)[(set: $T to it + 1)(goto: &quot;사운드_정적&quot;)]
+(link: &quot;몽환적이고 탐미적인 선율이 흐르는 감성적인 채널&quot;)[(set: $E to it + 1)(goto: &quot;사운드_멜로디&quot;)]
+(link: &quot;심장을 두드리는 거칠고 파격적인 비트의 채널&quot;)[(set: $D to it + 1)(goto: &quot;사운드_리듬&quot;)]
+
+{ (if: false)[ [[-&gt;사운드_정적]] [[-&gt;사운드_멜로디]] [[-&gt;사운드_리듬]] ] }</tw-passagedata><tw-passagedata pid="10" name="사운드_정적" tags="" position="1125,750" size="100,100">스피커에서 바람 소리, 누군가의 먼 발자국 소리, 그리고 깊은 침묵이 흘러나옵니다. 당신은 화려한 악기 소리보다 일상의 결이 담긴 소리를 더 신뢰했던 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;정적 속에서도 많은 것을 듣고 계시는군요.&quot;&lt;/div&gt;
+
+
+[[편집실로 이동하여 영화를 완성한다.-&gt;분기_편집]]
+</tw-passagedata><tw-passagedata pid="11" name="사운드_멜로디" tags="" position="1250,725" size="100,100">서정적인 바이올린 선율이 대여점 안개 속으로 번져나갑니다. 당신은 차가운 현실보다 가슴을 울리는 감정의 파동에 더 귀를 기울였던 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;당신의 영화는 아주 아름다운 선율을 가졌겠군요.&lt;/div&gt;
+
+
+[[편집실로 이동하여 영화를 완성한다.-&gt;분기_편집]]
+</tw-passagedata><tw-passagedata pid="12" name="사운드_리듬" tags="" position="1375,650" size="100,100">심장을 때리는 강렬한 타악기 소리와 정체모를 기계음이 뒤섞여 들립니다. 당신은 안전한 화음보다 파격적이고 본능적인 리듬에 몸을 던졌던 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;이 소리들은 당신의 심장 박동과 닮아 있군요.&quot;&lt;/div&gt;
+
+
+[[편집실로 이동하여 영화를 완성한다.-&gt;분기_편집]]
+</tw-passagedata><tw-passagedata pid="13" name="분기_편집" tags="" position="1375,900" size="100,100">[SCENE #4. 편집실 - 마지막 공정]
+
+이제 복구된 이미지와 소리를 하나로 이어 붙여야 합니다. 영화의 &#39;호흡&#39;을 결정할 마지막 가위질입니다.
+
+(link: &quot;인물의 감정을 길게 따라가는 정교한 롱테이크&quot;)[(set: $T to it + 1)(set: $E to it + 1)(goto: &quot;수리_완료&quot;)]
+(link: &quot;숨 가쁘게 몰아치는 파격적인 교차 편집&quot;)[(set: $D to it + 2)(goto: &quot;수리_완료&quot;)]
+
+{ (if: false)[ [[-&gt;수리_완료]] ] }
+</tw-passagedata><tw-passagedata pid="14" name="수리_완료" tags="" position="1375,1025" size="100,100">[RESULT: 당신은 경계를 허무는 개척자입니다]
+
+스크린 위로 파편화된 이미지와 거친 노이즈가 폭발하듯 쏟아집니다. 
+당신의 전생은 정형화된 틀에 갇히기를 거부하며, 
+끊임없이 새로운 감각을 탐닉했던 뜨거운 여정이었습니다.
+
+
+🎬 당신의 전생과 닮은 영화 처방전:
+
+{
+(if: (history:) contains &quot;C_기억_파괴&quot;)[
+[세부 성향: 질서를 무너뜨리는 파괴적 미학]
+기존의 형식을 해체하고 그 파편 속에서 새로운 아름다움을 발견하는 당신에게 이 영화들을 추천합니다.
+&lt;올드보이&gt; (박찬욱) - 금기를 깨뜨리는 강렬한 미장센
+&lt;파이트 클럽&gt; (데이비드 핀처) - 현대 문명의 질서를 거부하는 에너지
+&lt;안달루시아의 개&gt; (루이스 부뉴엘) - 초현실주의 실험 영화의 정점
+]
+(else-if: (history:) contains &quot;C_기억_속도&quot;)[
+[세부 성향: 멈추지 않는 운동성과 본능]
+숨 가쁜 질주와 압도적인 리듬감 속에서 삶의 에너지를 얻는 당신에게 이 영화들을 추천합니다.
+&lt;매드맥스: 분노의 도로&gt; (조지 밀러) - 멈추지 않는 아드레날린의 질주
+&lt;위플래쉬&gt; (데미언 셔젤) - 광기 어린 리듬과 폭발적인 몰입
+&lt;에브리씽 에브리웨어 올 앳 원스&gt; (다니엘스) - 멀티버스를 넘나드는 혼돈의 미학
+]
+(else:)[
+[세부 성향: 전위적인 실험가]
+당신은 익숙한 길 대신 늘 낯설고 파격적인 길을 선택하는 영혼이군요.
+&lt;클로즈업&gt; (압바스 키아로스타미)
+&lt;메멘토&gt; (크리스토퍼 놀란)
+]
+}
+
+---
+&lt;div class=&quot;clerk-speech&quot;&gt;
+점원: &quot;이토록 강렬한 필름은 오랜만이군요. 다시 안개 속으로 들어가시겠습니까?&quot;
+&lt;/div&gt;
+
+[[대여점 문을 다시 열고 들어간다.-&gt;대여점_입구]]
+</tw-passagedata><tw-passagedata pid="15" name="A_기억_사물" tags="" position="450,200" size="100,100">화면이 낡은 구두를 클로즈업합니다. 뒤축이 다 닳아버린 구두는 주인이 걸어온 고단한 거리를 웅변하고 있습니다. 당신은 화려한 주인공보다 버려진 것들이 품은 이야기에 귀를 기울이는 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt; 점원: &quot;사소한 것들 속에 가장 큰 진실이 숨어 있기도 하죠.&quot;&lt;/div&gt;
+
+[[기록을 더 깊게 이어간다.-&gt;A_기록의심화]]
+</tw-passagedata><tw-passagedata pid="16" name="A_기억_인물" tags="" position="450,325" size="100,100">카메라는 남자의 무표정한 얼굴을 묵묵히 응시합니다. 뿜어내는 담배 연기가 흩어지는 모습까지도 놓치지 않습니다. 당신은 감정을 과장하지 않고, 존재 그 자체를 있는 그대로 지켜보던 영혼입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;침묵만큼 많은 것을 말해주는 것도 없으니까요.&quot;&lt;/div&gt;
+
+[[기록을 더 깊게 이어간다.-&gt;A_기록의심화]]
+</tw-passagedata><tw-passagedata pid="17" name="A_기록의심화" tags="" position="275,300" size="100,100">이제 카메라는 피사체의 외형을 넘어, 그 안에 숨겨진 &#39;의도&#39;를 추적하기 시작합니다. 당신이 기록하고 싶은 진실의 가장 깊은 층위는 무엇입니까?
+
+(link: &quot;철저히 거리를 두고 관찰하는 타인의 시선&quot;)[(set: $T to it + 1)(goto: &quot;A_심화_관찰&quot;)]
+(link: &quot;현실의 부조리를 날카롭게 파고드는 고발의 시선&quot;)[(set: $T to it + 1)(goto: &quot;A_심화_고발&quot;)]
+(link: &quot;나 자신의 내면을 담담히 고백하는 성찰의 시선&quot;)[(set: $T to it + 1)(goto: &quot;A_심화_성찰&quot;)]
+
+{ (if: false)[ [[-&gt;A_심화_관찰]] [[-&gt;A_심화_고발]] [[-&gt;A_심화_성찰]] ] }
+</tw-passagedata><tw-passagedata pid="18" name="A_심화_관찰" tags="" position="75,650" size="100,100">당신은 인물의 삶에 개입하지 않습니다. 그저 그가 밥을 먹고, 길을 걷고, 혼자 시간을 보내는 정적인 순간을 묵묵히 지켜볼 뿐입니다. 
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;가장 투명한 진실은 아무것도 하지 않을 때 드러나는 법이죠.&quot;&lt;/div&gt;
+
+[[기록의 그림자를 따라간다.-&gt;A_그림자_추적]]
+</tw-passagedata><tw-passagedata pid="19" name="A_심화_고발" tags="" position="200,650" size="100,100">카메라는 화려한 도시의 이면에 숨겨진 소외된 장소들을 비춥니다. 낡은 벽보, 버려진 공사장... 당신의 필름은 세상이 잊고자 하는 불편한 진실을 담아내고 있습니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;무거운 진실을 마주할 용기를 가지셨군요.&quot;&lt;/div&gt;
+
+[[기록의 그림자를 따라간다.-&gt;A_그림자_추적]]
+</tw-passagedata><tw-passagedata pid="20" name="A_심화_성찰" tags="" position="325,650" size="100,100">카메라의 렌즈가 거울을 향합니다. 화면 속에는 타인이 아닌, 자신의 흔들리는 눈동자가 담깁니다. 당신은 세상을 찍는 행위를 통해 자기 자신을 이해하려 노력했습니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;자신을 기록하는 것만큼 정직하고 고통스러운 일은 없죠.&quot;&lt;/div&gt;
+
+[[기록의 그림자를 따라간다.-&gt;A_그림자_추적]]
+</tw-passagedata><tw-passagedata pid="21" name="A_그림자_추적" tags="" position="100,875" size="100,100">빛이 바뀌자 이전에는 보이지 않던 그림자들이 길게 늘어집니다. 당신은 그 그림자 속에서 잃어버린 기억의 파편 하나를 발견합니다. 
+
+그것은 아주 오래전 당신이 놓쳐버린 진실의 조각입니다.
+
+[[기억의 파편을 집어 든다.-&gt;A_파편_복구]]
+</tw-passagedata><tw-passagedata pid="22" name="A_파편_복구" tags="" position="200,1000" size="100,100">파편을 집어 들자 테이프가 빠르게 회전하며 지금까지 기록한 장면들이 하나로 엮이기 시작합니다. 하지만 마지막 조각을 맞추기 위해선, 당신이 이 기록을 통해 얻고자 하는 &#39;답&#39;이 무엇인지 결정해야 합니다.
+
+(link: &quot;변하지 않는 삶의 본질을 묵묵히 받아들인다.&quot;)[(set: $A_type to &quot;본질&quot;) (goto: &quot;A_결말_진실&quot;)]
+(link: &quot;잘못된 세상을 바로잡을 변화의 불씨를 찾는다.&quot;)[(set: $A_type to &quot;변화&quot;) (goto: &quot;A_결말_진실&quot;)]
+(link: &quot;지친 나를 다독여줄 따뜻한 위로를 발견한다.&quot;)[(set: $A_type to &quot;위로&quot;) (goto: &quot;A_결말_진실&quot;)]
+
+{ (if: false)[ [[-&gt;A_결말_진실]] ] }
+</tw-passagedata><tw-passagedata pid="23" name="A_결말_진실" tags="" position="200,1125" size="100,100">결정된 영상이 비디오 헤드에 완벽하게 안착합니다. 이제 당신의 영화는 단순한 기록을 넘어, 당신만의 철학이 담긴 &#39;작품&#39;이 되었습니다.
+
+ &lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;당신의 시선이 머문 곳에 비로소 영화가 탄생했군요. 시각적인 복구는 끝났습니다. 이제 이 풍경에 어울리는 &#39;목소리&#39;를 들려주세요.&quot;&lt;/div&gt;
+
+[[테이프의 소리 채널을 연다.-&gt;VHS Player]]
+</tw-passagedata><tw-passagedata pid="24" name="index" tags="" position="100,25" size="100,100">세상의 모든 빛이 꺼지고, 당신은 마지막 숨을 뱉으며 잠이 들었습니다.
+문득 정신을 차려보니 끝을 알 수 없는 짙은 푸른 안개 속에 서 있습니다.
+
+들리는 것은 당신의 발자국 소리뿐, 
+이곳은 산 자와 죽은 자의 경계이자, 기억이 먼지가 되어 쌓이는 곳입니다.
+
+망각의 강 ‘레테’를 건너기 전, 
+모든 영혼은 자신이 살았던 삶의 기록을 단 한 번 마주해야 합니다. 
+그 기록은 거칠고 노이즈가 가득한 비디오 테이프의 형상을 하고 있습니다.
+
+그때, 안개 너머로 낡은 네온사인 하나가 깜빡입니다.
+&lt;div class=&quot;neon-container&quot;&gt;
+    &lt;span class=&quot;neon-text&quot;&gt;VIDEO LETHE&lt;/span&gt;
+&lt;/div&gt;
+
+당신은 본능적으로 깨닫습니다. 
+저 문을 열고 들어가 당신만의 필름을 복구하지 못한다면, 
+당신의 생은 그저 이름 없는 노이즈로 영원히 사라질 것이라는 사실을.
+
+무거운 유리문을 밀고, 당신은 전생이라는 하나의 ‘영화’속으로 걸어 들어갑니다
+
+(지금부터 우리는 함께 당신의 전생을 경유하여 하나의 영화를 탐색하게 됩니다.
+이번 생의 취향은 레테를 건너기 전, 당신이 결정했던 것이니까요)
+
+
+[[문 위의 종소리를 들으며 입장한다.-&gt;대여점_입구]]
+</tw-passagedata><tw-passagedata pid="25" name="VHS Player" tags="" position="375,1250" size="100,100">[RESULT: 당신은 진실을 쫓는 기록자입니다]
+
+스크린 위로 당신이 복구한 전생의 장면들이 흐릅니다. 
+화려한 수식어는 없지만, 그 어떤 영화보다 정직하고 묵직한 진실이 담겨 있습니다.
+
+🎬 당신의 전생과 닮은 영화 처방전:
+
+{
+(if: (history:) contains &quot;A_심화_관찰&quot;)[
+[세부 성향: 삶의 본질을 꿰뚫는 시선]
+일상의 반복 속에서 숭고함을 찾아내는 당신에게 이 영화들을 추천합니다.
+&lt;패터슨&gt; (짐 자무쉬)
+&lt;동경 이야기&gt; (오즈 야스지로)
+&lt;만희의 카메라&gt; (홍상수)
+]
+(else-if: (history:) contains &quot;A_심화_고발&quot;)[
+[세부 성향: 세상을 바꾸는 날카로운 기록]
+사회의 부조리를 외면하지 않고 목소리를 내는 당신에게 이 영화들을 추천합니다.
+&lt;나, 다니엘 블레이크&gt; (켄 로치)
+&lt;사울의 아들&gt; (라즐로 네메스)
+&lt;노매드랜드&gt; (클로이 자오)
+]
+(else-if: (history:) contains &quot;A_심화_성찰&quot;)[
+[세부 성향: 나를 다독이는 사색적 고백]
+상처 입은 내면을 기록으로 치유하는 당신에게 이 영화들을 추천합니다.
+&lt;드라이브 마이 카&gt; (하마구치 류스케)
+&lt;바르다가 사랑한 얼굴들&gt; (아녜스 바르다)
+&lt;로마&gt; (알폰소 쿠아론)
+]
+(else:)[
+[세부 성향: 정직한 관찰자]
+당신은 꾸밈없는 진실에서 가치를 찾는 영혼이군요. 
+&lt;만희의 카메라&gt; (홍상수)
+&lt;노매드랜드&gt; (클로이 자오)
+]
+}
+
+---
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;다른 삶의 기록도 궁금하십니까?&quot;&lt;/div&gt;
+
+
+[[대여점 문을 다시 열고 들어간다.-&gt;대여점_입구]]
+</tw-passagedata><tw-passagedata pid="26" name="B_경계_해체" tags="" position="725,850" size="100,100">공간의 물리적인 법칙이 무너집니다. 하늘에서는 꽃잎 대신 푸른 별들이 떨어지고, 발밑의 땅은 구름처럼 푹신합니다. 당신은 이 비현실적인 풍경 속에서 어디로 향하시겠습니까?
+
+(link: &quot;꽃들이 노래하는 비밀스러운 정원&quot;)[(set: $E to it + 1)(goto: &quot;B_기억_정원&quot;)]
+(link: &quot;모든 것이 거꾸로 흐르는 은빛 바다&quot;)[(set: $E to it + 1)(goto: &quot;B_기억_바다&quot;)]
+
+{ (if: false)[ [[-&gt;B_기억_정원]] [[-&gt;B_기억_바다]] ] }
+</tw-passagedata><tw-passagedata pid="27" name="B_기억_정원" tags="" position="650,1100" size="100,100">당신은 눈앞에 펼쳐진 색채의 향연에 압도당합니다. 꽃들은 저마다의 주파수로 노래하며 당신을 환영합니다. 이것은 전생의 당신이 간절히 바랐던 &#39;이상향&#39;의 조각입니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;이곳의 향기는 잊히지 않죠.&quot;&lt;/div&gt;
+
+[[이 풍경의 색감을 더 짙게 물들인다.-&gt;B_미학의심화]]
+</tw-passagedata><tw-passagedata pid="28" name="B_기억_바다" tags="" position="875,1100" size="100,100">중력이 거꾸로 뒤집힌 바다 위를 걷습니다. 발아래로 고래들이 밤하늘을 헤엄치듯 지나가고, 파도는 음악처럼 부서집니다. 당신은 현실의 무게를 잊고 이 자유로운 유영에 몸을 맡깁니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;심해의 정적조차 아름답게 느껴지는 곳이군요.&quot;&lt;/div&gt;
+
+
+[[이 풍경의 색감을 더 짙게 물들인다.-&gt;B_미학의심화]]
+</tw-passagedata><tw-passagedata pid="29" name="B_미학의심화" tags="" position="775,1225" size="100,100">환상은 점점 더 정교해집니다. 이제 당신은 스크린 밖으로 나갈 생각조차 잊어버린 채, 이 아름다운 가짜 세계의 주인공이 되고 싶어 합니다. 
+
+당신이 이 필름을 통해 도달하고 싶은 탐미의 끝은 무엇입니까?
+
+(link: &quot;완벽한 질서와 화려함이 가득한 탐미주의적 시선&quot;)[(goto: &quot;B_심화_탐미&quot;)]
+(link: &quot;슬픔과 허무가 섞인 안개 같은 몽환적 시선&quot;)[(goto: &quot;B_심화_몽환&quot;)]
+(link: &quot;동화적이고 깨끗한 상상력이 돋보이는 순수한 시선&quot;)[(goto: &quot;B_심화_순수&quot;)]
+
+{ (if: false)[ [[-&gt;B_심화_탐미]] [[-&gt;B_심화_몽환]] [[-&gt;B_심화_순수]] ] }
+</tw-passagedata><tw-passagedata pid="30" name="B_심화_탐미" tags="" position="650,1350" size="100,100">당신의 세계는 한 치의 오차도 없는 대칭과 화려한 색채로 가득 찹니다. 모든 프레임이 하나의 정교한 회화 작품처럼 느껴집니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;탐미적인 갈망이 끝이 없군요. 당신의 영화는 세상에서 가장 눈부신 색을 가지게 될 겁니다.&quot;&lt;/div&gt;
+
+
+[[아름다움 뒤에 숨겨진 그림자를 쫓는다.-&gt;B_그림자_추적]]
+</tw-passagedata><tw-passagedata pid="31" name="B_심화_몽환" tags="" position="775,1350" size="100,100">공간 전체에 옅은 안개가 깔리고, 현실과 꿈의 경계가 완전히 흐릿해집니다. 당신은 느린 호흡으로 이 기묘하고도 서정적인 분위기를 즐깁니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;이 안개 속에 영원히 머물고 싶어 하는 영혼들이 많죠.&quot;&lt;/div&gt;
+
+
+[[아름다움 뒤에 숨겨진 그림자를 쫓는다.-&gt;B_그림자_추적]]
+</tw-passagedata><tw-passagedata pid="32" name="B_심화_순수" tags="" position="900,1350" size="100,100">세상이 마치 어린아이의 눈으로 본 것처럼 맑고 경쾌하게 변합니다. 일상의 평범한 물건들이 마법처럼 살아 움직이고, 당신의 필름은 따뜻한 빛으로 물듭니다.
+
+&lt;div class=&quot;clerk-speech&quot;&gt;점원: &quot;순수한 상상력만큼 강력한 마법은 없으니까요.&quot;&lt;/div&gt;
+
+
+[[아름다움 뒤에 숨겨진 그림자를 쫓는다.-&gt;B_그림자_추적]]
+</tw-passagedata><tw-passagedata pid="33" name="B_그림자_추적" tags="" position="775,1525" size="100,100">너무 밝은 빛은 눈을 멀게 하듯, 화려한 환상 뒤에도 짙은 그림자가 존재합니다. 당신은 그 그림자 속에서 반짝이는 작은 조각 하나를 발견합니다. 
+
+그것은 전생의 당신이 미처 이루지 못한 &#39;꿈&#39;의 파편입니다.
+
+[[꿈의 파편을 소중히 집어 든다.-&gt;B_파편_복구]]
+</tw-passagedata><tw-passagedata pid="34" name="B_파편_복구" tags="" position="775,1650" size="100,100">파편을 쥐는 순간, 흩어져 있던 색채들이 하나의 거대한 캔버스가 되어 당신을 감쌉니다. 당신은 이 환상의 세계를 어떻게 완성하고 싶습니까?
+
+(link: &quot;현실을 잊게 할 만큼 완벽한 파라다이스로 만든다.&quot;)[(goto: &quot;B_결말_환상&quot;)]
+(link: &quot;슬프지만 아름다운 한 편의 시로 남긴다.&quot;)[(goto: &quot;B_결말_환상&quot;)]
+(link: &quot;모두를 행복하게 만드는 동화로 꾸민다.&quot;)[(goto: &quot;B_결말_환상&quot;)]
+
+{ (if: false)[ [[-&gt;B_결말_환상]] ] }
+</tw-passagedata><tw-passagedata pid="35" name="B_결말_환상" tags="" position="900,1875" size="100,100">[RESULT: 당신은 환상을 그리는 몽상가입니다]
+
+스크린 위로 눈부시게 아름다운 색채와 환상적인 풍경들이 흐릅니다. 
+당신의 전생은 삭막한 현실 속에서도 끊임없이 아름다움을 찾아내고, 
+자신만의 유토피아를 설계했던 예술가적인 여정이었습니다.
+
+🎬 당신의 전생과 닮은 영화 처방전:
+
+{
+(if: (history:) contains &quot;B_심화_탐미&quot;)[
+[세부 성향: 완벽한 미장센의 탐미주의자]
+압도적인 시각적 화려함과 완벽한 구도를 사랑하는 당신에게 이 영화들을 추천합니다.
+&lt;그랜드 부다페스트 호텔&gt; (웨스 앤더슨) - 완벽한 대칭과 파스텔톤의 미학
+&lt;더 폴: 오리어스와 말도 안 되는 이야기&gt; (타셈 싱) - 전 세계의 경이로운 풍경을 담은 영상미
+&lt;캐롤&gt; (토드 헤인즈) - 50년대의 질감을 완벽하게 복원한 탐미적 연출
+]
+(else-if: (history:) contains &quot;B_심화_몽환&quot;)[
+[세부 성향: 안개 속을 거니는 서정적 몽상가]
+꿈과 현실의 경계에서 느껴지는 기묘한 정서와 아름다움을 즐기는 당신에게 이 영화들을 추천합니다.
+&lt;화양연화&gt; (왕가위) - 느린 호흡과 강렬한 색채로 빚어낸 몽환적 순간
+&lt;미드나잇 인 파리&gt; (우디 앨런) - 과거의 예술적 낭만을 찾아 떠나는 환상적인 여행
+&lt;판의 미로&gt; (기예르모 델 토로) - 비극적인 현실과 기괴하도록 아름다운 판타지의 결합
+]
+(else-if: (history:) contains &quot;B_심화_순수&quot;)[
+[세부 성향: 동화 같은 상상력을 품은 영혼]
+세상을 따뜻하고 경이로운 시선으로 바라보며 마법 같은 일상을 꿈꾸는 당신에게 추천합니다.
+&lt;빅 피쉬&gt; (팀 버튼) - 삶의 마지막 순간에 완성되는 거대한 동화
+&lt;아멜리에&gt; (장 피에르 주네) - 파리의 일상을 마법 같은 우연으로 채우는 상상력
+&lt;이웃집 토토로&gt; (미야자키 하야오) - 동심의 눈으로만 보이는 숲의 정령과 따스한 위로
+]
+(else:)[
+[세부 성향: 감각적인 몽상가]
+아름다움 그 자체에서 위안을 얻는 예술적인 영혼이군요.
+&lt;라이프 오브 파이&gt; (이안)
+&lt;라라랜드&gt; (데미언 셔젤)
+]
+}
+
+
+---
+
+점원:&quot;이토록 아름다운 영화를 보게 되어 영광입니다. 다시 안개 속으로 돌아가시겠습니까?&quot;
+
+
+[[대여점 문을 다시 열고 들어간다.-&gt;대여점_입구]]
+</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
